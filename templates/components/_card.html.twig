@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-img-top">
+        <img src="https://picsum.photos/seed/picsum/200/300" class="img" alt="{{ post.title }}">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <span class="date">
+            <i class="fa-solid fa-calendar-days"></i>
+            Date de Publication : {{ post.publishedAt|format_datetime('full', 'none', locale="fr") }}
+        </span>
+        <p class="card-text">{{ post.summary }}</p>
+        <a href="{{ path('app_post', {slug: post.slug}) }}" class="btn btn-primary">
+            Lire l'article <i class="fa-solid fa-angles-right"></i>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil : Mini Blog{% endblock %}
+
+{% block body %}
+
+<div id="home" class="content">
+    <h1 class="title">{{ title }}! ✅</h1>
+
+    <div class="contain">
+        <div class="posts grid">
+            {% for post in posts %}
+                {% include 'components/_card.html.twig' with {post: post} only %}
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

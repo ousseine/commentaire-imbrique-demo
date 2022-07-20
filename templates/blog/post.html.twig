@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article : {{ post.title }}{% endblock %}
+
+{% block body %}
+
+    <div id="home" class="content">
+        <h1 class="title">{{ post.title }}</h1>
+
+        <div class="post-img">
+            <img src="https://picsum.photos/seed/picsum/200/300" alt="{{ post.title }}">
+        </div>
+
+        <div class="contain">
+            <div class="date">
+                <i class="fa-solid fa-calendar-days"></i>
+                Date de publication : {{ post.publishedAt|format_datetime('full','none', locale='fr') }}
+            </div>
+            <div class="summary">{{ post.summary }}</div>
+            <article>{{ post.content|raw }}</article>
+        </div>
+    </div>
+
+{% endblock %}

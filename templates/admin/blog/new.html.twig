@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin : Nouveau article{% endblock %}
+
+{% block body %}
+
+    <div id="admin-blog" class="content">
+        <div class="top-title">
+            <h1 class="title">Nouveau article</h1>
+
+            <div class="top">
+                <a class="btn btn-sm btn-dark" href="{{ path('app_admin_blog_index') }}">Retour</a>
+            </div>
+        </div>
+
+        <div class="contain">
+            {{ include('admin/blog/_form.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}

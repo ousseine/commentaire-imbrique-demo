@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin: Blog{% endblock %}
+
+{% block body %}
+
+    <div id="admin-blog" class="content">
+        <div class="top-title">
+            <h1 class="title">Listes des articles</h1>
+
+            <div class="top">
+                <a class="btn btn-sm btn-dark me-1" href="{{ path('app_admin_blog_index') }}">Retour</a>
+                <a class="btn btn-sm btn-primary" href="{{ path('app_admin_blog_new') }}">Nouveau article</a>
+            </div>
+        </div>
+
+        <div class="contain">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#Id</th>
+                    <th>Titre</th>
+                    <th>Date de publication</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.publishedAt|format_datetime('short', 'none', locale="fr") }}</td>
+                        <td class="actions">
+                            <a class="btn btn-sm btn-secondary me-1" href="{{ path('app_admin_blog_show', {'id': post.id}) }}">show</a>
+                            <a class="btn btn-sm btn-info" href="{{ path('app_admin_blog_edit', {'id': post.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                {{ knp_pagination_render(posts) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
