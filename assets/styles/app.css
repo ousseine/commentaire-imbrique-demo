@@ -27,6 +27,24 @@ nav .nav-link {
     color: black;
 }
 
+/* Form */
+form .c-form-name-email {
+    display: flex;
+    justify-content: space-between;
+}
+
+form .c-form-name-email .mb-3 {
+    width: 100%;
+}
+
+form .c-form-name-email .mb-3:first-child {
+    margin-right: 10px;
+}
+
+form .c-form-name-email .mb-3:last-child {
+    margin-left: 10px;
+}
+
 /* main : post */
 .title {
     text-transform: uppercase;
@@ -109,11 +127,70 @@ article {
     font-family: "Segoe UI", sans-serif;
 }
 
-@media all and (max-width: 540px) {
+@media all and (max-width: 576px) {
     .posts.grid {
         display: block;
     }
 }
+
+
+/* Comments */
+.comments {
+    margin-top: 3rem;
+}
+
+.c-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.c-list .card-comment {
+    border: 1px solid #eadede;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.c-list .comment {
+}
+
+.card-comment .c-reply {
+    margin-top: 2rem;
+    padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.card-comment .card-reply {
+    margin-left: 10px;
+    border-left: 1px solid #eadede;
+}
+
+
+.comment .btn-reply {
+    text-decoration: none;
+    font-size: .8rem;
+    cursor: pointer;
+    color: gray;
+    display: none;
+}
+
+.c-top:hover .btn-reply {
+    display: inline-block;
+}
+
+.comment .btn-reply:hover {
+    text-decoration: underline;
+}
+
+.comment .c-user {
+    font-weight: bold;
+}
+
+.comment .c-message {
+    margin-top: 1rem;
+}
+
 
 /* Admin : blog */
 
@@ -140,19 +217,19 @@ table .actions {
     flex-direction: row;
 }
 
-@media all and (max-width: 540px) {
+@media all and (max-width: 576px) {
 
-    #admin-blog .top-title {
+    #admin .top-title {
         flex-direction: column;
         margin-bottom: 1.5rem;
     }
 
-    #admin-blog .title {
+    #admin .title {
         width: 100%;
         font-size: 1.2rem;
     }
 
-    #admin-blog .top {
+    #admin .top {
         width: 100%;
         justify-content: flex-start;
     }

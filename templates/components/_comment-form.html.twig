@@ -1,0 +1,8 @@
+{{ form_start(form, {'attr' : {'class' : 'comment-form'}}) }}
+<div class="c-form-name-email">
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+</div>
+<div class="c-form-item">{{ form_row(form.message) }}</div>
+<button class="btn btn-ls btn-primary">Envoyer</button>
+{{ form_end(form) }}

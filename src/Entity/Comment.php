@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,11 +25,23 @@ class Comment
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $publishedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Post $post = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $publishedAt = null;
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'replies')]
+    private ?self $parent = null;
+
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    private Collection $replies;
+
+    public function __construct()
+    {
+        $this->publishedAt = new \DateTime();
+        $this->replies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +84,18 @@ class Comment
         return $this;
     }
 
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
     public function getPost(): ?Post
     {
         return $this->post;
@@ -82,14 +108,44 @@ class Comment
         return $this;
     }
 
-    public function getPublishedAt(): ?\DateTimeInterface
+    public function getParent(): ?self
     {
-        return $this->publishedAt;
+        return $this->parent;
     }
 
-    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    public function setParent(?self $parent): self
     {
-        $this->publishedAt = $publishedAt;
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(self $reply): self
+    {
+        if (!$this->replies->contains($reply)) {
+            $this->replies[] = $reply;
+            $reply->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(self $reply): self
+    {
+        if ($this->replies->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getParent() === $this) {
+                $reply->setParent(null);
+            }
+        }
 
         return $this;
     }

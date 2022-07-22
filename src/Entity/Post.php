@@ -36,8 +36,8 @@ class Post
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
+        $this->publishedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -133,5 +133,10 @@ class Post
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
     }
 }

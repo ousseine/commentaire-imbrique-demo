@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin : Commentaires{% endblock %}
+
+{% block body %}
+
+    <div id="admin" class="content admin-comment">
+        <div class="top-title">
+            <h1 class="title">Listes des commentaires</h1>
+
+            <div class="top">
+                <a class="btn btn-sm btn-dark me-1" href="{{ path('app_admin_comment_index') }}">Retour</a>
+                <a class="btn btn-sm btn-primary" href="{{ path('app_admin_comment_new') }}">nouveau commentaire</a>
+            </div>
+        </div>
+
+        <div class="contain">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#Id</th>
+                        <th>Nom</th>
+                        <th>Date de publication</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.name }}</td>
+                        <td>{{ comment.publishedAt | format_datetime('short', 'none', locale="fr") }}</td>
+                        <td class="actions">
+                            <a class="btn btn-sm btn-info me-1" href="{{ path('app_admin_comment_show', {'id': comment.id}) }}">show</a>
+                            <a class="btn btn-sm btn-secondary" href="{{ path('app_admin_comment_edit', {'id': comment.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                {{ knp_pagination_render(comments) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

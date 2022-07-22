@@ -18,6 +18,28 @@
             </div>
             <div class="summary">{{ post.summary }}</div>
             <article>{{ post.content|raw }}</article>
+
+            <div class="comments">
+                <h3 class="c-title">
+                    {% if post.comments | length > 1 %}
+                        <i class="fa-solid fa-comments"></i>
+                        ({{ post.comments | length }}) commentaires
+                    {% else %}
+                        <i class="fa-solid fa-comments"></i>
+                        ({{ post.comments | length }}) commentaire
+                    {% endif %}
+                </h3>
+
+                <div class="c-form mb-5">
+                    {% include 'components/_comment-form.html.twig' with {form: form} only %}
+                </div>
+
+                <div class="c-list">
+                    {% for comment in post.comments %}
+                        {% include 'components/_comment.html.twig' with {comment: comment} only %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
