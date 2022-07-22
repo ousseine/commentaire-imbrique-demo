@@ -27,6 +27,52 @@ nav .nav-link {
     color: black;
 }
 
+
+/* Footer */
+footer .container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: flex-start;
+
+    width: 800px;
+    padding: 30px 0;
+}
+
+footer .f-content {
+}
+
+footer .f-logo .logo {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.f-content .f-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.f-content .nav-link {
+    color: black;
+    padding: 0;
+}
+.f-content .nav-link:hover {
+    text-decoration: underline;
+}
+
+footer .copyright {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright p {
+    color: gray;
+    font-size: 14px;
+}
+
 /* Form */
 form .c-form-name-email {
     display: flex;
@@ -130,6 +176,10 @@ article {
 @media all and (max-width: 576px) {
     .posts.grid {
         display: block;
+    }
+
+    nav .container {
+        padding: 0 10px;
     }
 }
 

@@ -28,25 +28,6 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_comment_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CommentRepository $commentRepository): Response
-    {
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commentRepository->add($comment, true);
-
-            return $this->redirectToRoute('app_admin_comment_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin/comment/new.html.twig', [
-            'comment' => $comment,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_admin_comment_show', methods: ['GET'])]
     public function show(Comment $comment): Response
     {

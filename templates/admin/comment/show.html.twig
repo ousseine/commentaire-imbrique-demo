@@ -9,8 +9,7 @@
             <h1 class="title">#{{ comment.id }} : Commentaire de {{ comment.name }}</h1>
 
             <div class="top">
-                <a class="btn btn-sm btn-dark" href="{{ path('app_admin_comment_index') }}">Retour</a>
-                <a class="btn btn-sm btn-secondary mx-1" href="{{ path('app_admin_comment_edit', {'id': comment.id}) }}">edit</a>
+                <a class="btn btn-sm btn-dark me-1" href="{{ path('app_admin_comment_index') }}">Retour</a>
                 {{ include('admin/comment/_delete_form.html.twig') }}
             </div>
         </div>
