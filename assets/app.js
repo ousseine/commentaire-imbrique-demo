@@ -19,6 +19,6 @@ document.querySelectorAll("[data-reply]").forEach(btn => {
         const form = document.querySelector('.comment-form')
         this.after(form)
 
-        console.log('ok')
+        // console.log('ok')
     })
 })
